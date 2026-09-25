@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knot & GO — Feedback</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+ --cream:#f3dfc4;--card:#fffaf2;--brown:#542d20;--rust:#b64b2d;
+ --orange:#cf6c35;--green:#17483e;--gold:#d5ad72;--muted:#766b63;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--brown)}
+body{
+ background:var(--cream);
+ overflow-x:hidden;
+}
+.page{
+ min-height:100vh;position:relative;padding:18px 14px 38px;
+ background:
+ radial-gradient(circle at 20% 35%,rgba(255,255,255,.35),transparent 28%),
+ linear-gradient(135deg,#f8e9d2,#eed7b7 50%,#f5e2c9);
+ overflow:hidden;
+}
+/* woven thread background */
+.weave{position:absolute;inset:-90px -80px auto;height:360px;opacity:.9;transform:rotate(-4deg);pointer-events:none}
+.weave .r{position:absolute;width:540px;height:16px;border-radius:50px;transform:rotate(27deg)}
+.weave .r:nth-child(1){left:-120px;top:25px;background:#164c43}
+.weave .r:nth-child(2){left:-100px;top:75px;background:#d4b083}
+.weave .r:nth-child(3){left:-90px;top:125px;background:#174c43}
+.weave .r:nth-child(4){left:10px;top:175px;background:#c86b39}
+.weave .r:nth-child(5){left:70px;top:225px;background:#e5cba6}
+.weave .r:nth-child(6){left:180px;top:275px;background:#a7462b}
+.weave .r2{position:absolute;width:520px;height:14px;border-radius:50px;transform:rotate(-27deg)}
+.weave .r2:nth-child(7){left:40px;top:35px;background:#e7cda6}
+.weave .r2:nth-child(8){left:90px;top:85px;background:#c56b3b}
+.weave .r2:nth-child(9){left:130px;top:135px;background:#ead3b0}
+.weave .r2:nth-child(10){left:165px;top:185px;background:#1d5047}
+.weave .r2:nth-child(11){left:205px;top:235px;background:#d8a66d}
+
+/* bottom threads */
+.bottom-weave{position:absolute;right:-100px;bottom:-30px;width:480px;height:220px;opacity:.85;transform:rotate(-9deg)}
+.bottom-weave i{position:absolute;width:500px;height:15px;border-radius:20px;transform:rotate(22deg)}
+.bottom-weave i:nth-child(1){top:20px;background:#bc512f}.bottom-weave i:nth-child(2){top:55px;background:#dfbb88}
+.bottom-weave i:nth-child(3){top:90px;background:#17483e}.bottom-weave i:nth-child(4){top:125px;background:#c86635}
+.bottom-weave i:nth-child(5){top:160px;background:#f0d8b4}
+
+/* little decorative objects */
+.tag{
+ position:absolute;background:#e5c99e;color:#4b3327;padding:13px 12px;
+ font-family:Georgia,serif;font-style:italic;font-size:15px;line-height:1.25;
+ box-shadow:0 6px 12px #6d432625;z-index:1
+}
+.tag:after{content:"♡";display:block;text-align:center;font-size:20px;margin-top:4px}
+.tag.left{left:5px;top:390px;transform:rotate(-8deg)}
+.tag.right{right:4px;top:125px;transform:rotate(7deg)}
+.key{
+ position:absolute;z-index:2;font-size:46px;filter:drop-shadow(0 4px 2px #5b38262b)
+}
+.key.one{left:5px;top:92px;transform:rotate(-18deg)}
+.key.two{right:3px;top:390px;transform:rotate(12deg)}
+
+.wrap{position:relative;z-index:5;max-width:590px;margin:auto}
+.brand{text-align:center;padding-top:55px;margin-bottom:20px}
+.logo-knot{
+ display:inline-block;font-family:Georgia,serif;font-size:64px;line-height:.7;
+ color:var(--green);text-shadow:8px 0 0 var(--orange);transform:rotate(-12deg)
+}
+.brand h1{font:600 48px/1 'DM Serif Display',Georgia,serif;margin:10px 0 4px;letter-spacing:-1.5px}
+.brand h1 span{color:var(--green)}
+.tagline{font-size:9px;font-weight:700;letter-spacing:2.5px;color:#654b3d}
+.wave{color:var(--rust);font-size:20px;letter-spacing:7px;margin-top:7px}
+
+.card{
+ background:rgba(255,250,242,.97);border-radius:30px;
+ padding:31px 28px 26px;box-shadow:0 18px 45px #5a35241e;
+ border:1px solid rgba(255,255,255,.9)
+}
+.kicker{text-align:center;color:var(--rust);font-size:12px;font-weight:800;letter-spacing:4px}
+h2{font:600 34px/1.05 'DM Serif Display',Georgia,serif;text-align:center;margin:12px auto 12px;max-width:390px}
+.intro{text-align:center;color:#655d57;font-size:14px;line-height:1.55;margin:0 auto 27px;max-width:470px}
+label{display:block;font-size:14px;font-weight:700;margin:18px 0 8px}
+label small{font-weight:400;color:#91867c}
+input,textarea{
+ width:100%;padding:14px 16px;border:1px solid #d8cbbb;background:#fffdf9;
+ border-radius:14px;outline:none;font:15px Inter;color:#432c22
+}
+input:focus,textarea:focus{border-color:var(--rust);box-shadow:0 0 0 3px #b64b2d12}
+textarea{height:150px;resize:vertical}
+.stars{display:flex;justify-content:center;gap:13px;margin:4px 0 5px}
+.stars button{border:0;background:transparent;color:#d7bd96;font-size:43px;padding:0;line-height:1;cursor:pointer}
+.stars button.active{color:#d18a38}
+.rating{text-align:center;color:#786d63;font-size:13px;height:19px}
+.submit{
+ width:100%;border:0;border-radius:12px;background:#c94720;color:#fff;
+ padding:16px;font:700 16px Inter;cursor:pointer;margin-top:21px;
+ box-shadow:0 9px 22px #c9472030
+}
+.note{text-align:center;color:#a09287;font-size:12px;margin-top:18px}
+.footer{text-align:center;color:#765f50;margin-top:18px;font-family:Georgia,serif}
+.footer strong{font-size:19px}.footer small{display:block;font-family:Inter;font-size:11px;margin-top:3px}
+.success{text-align:center;padding:35px 10px}.check{width:68px;height:68px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-size:34px;margin:auto}.success h2{margin-top:20px}.hidden{display:none}
+
+@media(min-width:700px){
+ .page{padding-top:35px}.wrap{max-width:700px}
+ .brand{padding-top:25px}
+ .card{padding:38px 48px}
+ .key.one{left:calc(50% - 360px)}.key.two{right:calc(50% - 360px)}
+ .tag.left{left:calc(50% - 350px)}.tag.right{right:calc(50% - 350px)}
+}
+@media(max-width:430px){
+ .page{padding:10px 10px 35px}
+ .brand{padding-top:45px;margin-bottom:17px}
+ .logo-knot{font-size:51px}.brand h1{font-size:39px}.tagline{font-size:7.5px;letter-spacing:2px}
+ .card{padding:29px 20px 24px;border-radius:27px}
+ h2{font-size:31px;max-width:310px}.intro{font-size:14px;margin-bottom:25px}
+ .stars{gap:7px}.stars button{font-size:38px}
+ .tag.left{top:500px;opacity:.55}.tag.right{top:105px;opacity:.45}
+ .key.one{font-size:34px}.key.two{font-size:34px}
+ textarea{height:150px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+ <div class="weave">
+  <i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i>
+  <i class="r2"></i><i class="r2"></i><i class="r2"></i><i class="r2"></i><i class="r2"></i>
+ </div>
+ <div class="bottom-weave"><i></i><i></i><i></i><i></i><i></i></div>
+ <div class="key one">🔗</div><div class="key two">🔗</div>
+ <div class="tag left">Small<br>Things<br>Big<br>Connections</div>
+ <div class="tag right">Find<br>Something?<br>Reconnect</div>
+
+ <main class="wrap">
+  <header class="brand">
+   <div class="logo-knot">∞</div>
+   <h1>Knot <span>&amp; GO</span></h1>
+   <div class="tagline">THREADS THAT BRING BACK WHAT MATTERS</div>
+   <div class="wave">~ ~ ~</div>
+  </header>
+
+  <section class="card" id="card">
+   <div id="formView">
+    <div class="kicker">— &nbsp; FEEDBACK &nbsp; —</div>
+    <h2>Share Your Experience</h2>
+    <p class="intro">Your feedback helps us improve <b>Knot &amp; GO</b><br>and make it more helpful for everyone.</p>
+    <form id="form">
+     <label>Your Name <small>(Optional)</small></label>
+     <input id="name" placeholder="Your Name (Optional)" maxlength="80">
+     <label>Rate Your Experience</label>
+     <div class="stars">
+      <button type="button" data-v="1">☆</button><button type="button" data-v="2">☆</button>
+      <button type="button" data-v="3">☆</button><button type="button" data-v="4">☆</button>
+      <button type="button" data-v="5">☆</button>
+     </div>
+     <div class="rating" id="rating">Select a rating</div>
+     <label>Feedback / Suggestions</label>
+     <textarea id="feedback" placeholder="Write your feedback or suggestions..." required></textarea>
+     <button class="submit" type="submit">✈ &nbsp; Submit Feedback</button>
+     <div class="note">Your feedback helps Knot &amp; GO grow.</div>
+    </form>
+   </div>
+   <div id="success" class="success hidden">
+    <div class="check">✓</div><h2>Thank You!</h2>
+    <p class="intro">Your feedback has been submitted successfully.<br>We really appreciate your time and support towards Knot &amp; GO!</p>
+    <button class="submit" onclick="location.reload()">Submit Another Response</button>
+   </div>
+  </section>
+  <div class="footer"><strong>Knot &amp; GO</strong><small>Find · Report · Reconnect</small></div>
+ </main>
+</div>
+
+<script>
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycby2ul9VrGxVkgNoBy5bQwhI0EKbjp1vDJMoAk5cl_UkWUMBBUmfVuIVfgSEbqtNMx55/exec";
+let selected=0;
+const text=["","Not great","Could be better","Good","Very good","Excellent!"];
+document.querySelectorAll(".stars button").forEach(b=>b.onclick=()=>{
+ selected=+b.dataset.v;
+ document.querySelectorAll(".stars button").forEach(x=>x.classList.toggle("active",+x.dataset.v<=selected));
+ document.getElementById("rating").textContent=text[selected];
+});
+document.getElementById("form").onsubmit=async e=>{
+ e.preventDefault();
+ if(!selected){alert("Please select a rating.");return}
+ if(APPS_SCRIPT_URL.includes("PASTE_YOUR")){alert("Demo mode — connect Google Sheets first.");return}
+ const btn=e.target.querySelector(".submit");btn.disabled=true;btn.textContent="Submitting...";
+ const data={name:document.getElementById("name").value.trim(),project:"Knot & GO",rating:selected,feedback:document.getElementById("feedback").value.trim()};
+ try{
+  await fetch(APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
+  document.getElementById("formView").classList.add("hidden");document.getElementById("success").classList.remove("hidden");
+ }catch(err){alert("Please try again.");btn.disabled=false;btn.textContent="✈  Submit Feedback"}
+};
+</script>
+</body>
+</html>
